@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PhEmail;
 use App\Models\LecturaPiscina;
+use App\Models\Piscina;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class LecturaPiscinaController extends Controller
 {
@@ -35,7 +40,36 @@ class LecturaPiscinaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request_data = $request->only('codigo_piscina', 'lectura');
+
+        $validate_request = Validator::make($request_data, [
+            'codigo_piscina' => 'required|uuid|exists:App\Models\Piscina,uuid',
+            'lectura' => 'required|numeric'
+        ]);
+
+        if ($validate_request->fails()) {
+            return response()->json(array(
+                'status' => 'bad_request',
+                'mensajes' => 'Los campos de la peticion son invalidos.',
+                'errores' => $validate_request->errors()
+            ), 400);
+        }
+
+        $data = $validate_request->validate();
+
+        $lectura = LecturaPiscina::create([
+            'lectura' => $data["lectura"],
+            'piscina_id' => Piscina::where("uuid", $data["codigo_piscina"])->first()->id
+        ]);
+
+        // $correo = new PhEmail;
+        // Mail::to("sdiazarrieta@gmail.com")->send($correo);
+
+        return response()->json(array(
+            'status' => 'success',
+            'mensajes' => "bien",
+            'lectura' => $lectura
+        ), 200);
     }
 
     /**

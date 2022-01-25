@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Cliente;
 use App\Models\Piscina;
+use App\Models\User;
 use App\Observers\ClienteObserver;
 use App\Observers\PiscinaObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -31,6 +33,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        User::observe(UserObserver::class);
         Cliente::observe(ClienteObserver::class);
         Piscina::observe(PiscinaObserver::class);
     }

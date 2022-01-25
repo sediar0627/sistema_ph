@@ -17,7 +17,7 @@ class CreateClientesTable extends Migration
         Schema::create("clientes", function (Blueprint $table) {
             $table->id();
             $table->uuid("uuid");
-            $table->string("telefono");
+            $table->string("telefono")->nullable();
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

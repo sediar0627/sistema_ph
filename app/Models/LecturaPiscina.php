@@ -11,8 +11,7 @@ class LecturaPiscina extends Model
     use HasFactory;
 
     protected $fillable = [
-        'uuid',
-        'litros',
+        'lectura',
         'piscina_id'
     ];
 

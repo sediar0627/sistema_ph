@@ -16,7 +16,7 @@ class CreateLecturaPiscinasTable extends Migration
     {
         Schema::create('lectura_piscinas', function (Blueprint $table) {
             $table->id();
-            $table->string('lectura');
+            $table->float('lectura');
             $table->foreignIdFor(Piscina::class);
             $table->timestamps();
         });

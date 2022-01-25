@@ -10,10 +10,13 @@
         "guzzlehttp/guzzle": "^7.4",
         "laravel/framework": "^8.75",
         "laravel/jetstream": "^2.6",
+        "laravel/nexmo-notification-channel": "^2.5",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laraveles/spanish": "^1.5",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "nexmo/laravel": "^2.4",
+        "vonage/client": "^2.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -58,7 +61,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

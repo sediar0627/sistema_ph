@@ -17,6 +17,7 @@ class CreatePiscinasTable extends Migration
         Schema::create('piscinas', function (Blueprint $table) {
             $table->id();
             $table->uuid("uuid");
+            $table->string("nombre");
             $table->integer("litros");
             $table->foreignIdFor(Cliente::class);
             $table->timestamps();

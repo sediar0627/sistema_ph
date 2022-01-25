@@ -13,6 +13,7 @@ class Piscina extends Model
 
     protected $fillable = [
         'uuid',
+        'nombre',
         'litros',
         'cliente_id'
     ];

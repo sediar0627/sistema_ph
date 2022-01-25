@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LecturaPiscinaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('lecturas');
 
 });
+
+Route::post("/ph/lecturas", [LecturaPiscinaController::class, "store"])->name("api_lecturas");
